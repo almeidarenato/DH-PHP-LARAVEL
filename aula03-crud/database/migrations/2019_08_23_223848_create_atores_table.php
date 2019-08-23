@@ -15,6 +15,7 @@ class CreateAtoresTable extends Migration
     {
         Schema::create('atores', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nome');
             $table->timestamps();
         });
     }
