@@ -67,5 +67,9 @@
         </table>
     </article>
 </section>
+    <div class="d-flex justify-content-center">
+        {{ $filmes->links() }}
+    </div>
+
 @endif
 @endsection

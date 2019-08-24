@@ -9,8 +9,9 @@ class FilmeController extends Controller
 {
     public function listandoFilmes()
     {
-        $filmes = Filme::all();
-
+        //$filmes = Filme::all();
+        $filmes = Filme::orderBy('id', 'ASC')->paginate(5);
+        //$filmes = Filme::paginate(5);
         return view('listandoFilmes')->with('filmes', $filmes);
     }
     public function adicionandoFilmes()
