@@ -27,3 +27,4 @@ Route::put('/filmes/alterar/{id}', 'FilmeController@modificandoFilme');
 
 //Removendo Filme
 Route::delete('/filmes/remover/{id}', 'FilmeController@removendoFilme');
+Route::get('/testandoRelacionamentos', 'GeneroController@testandoRelacionamento');
