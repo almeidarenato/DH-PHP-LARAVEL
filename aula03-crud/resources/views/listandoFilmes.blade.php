@@ -21,6 +21,7 @@
         <table class="table">
             <thead class="thead-light">
                 <tr>
+                    <th scope="col">Capa</th>
                     <th scope="col">Título</th>
                     <th colspan="col" scope="col">Sinopse</th>
                     <th colspan="2">Ações </th>
@@ -29,6 +30,9 @@
             <tbody>
                 @foreach($filmes as $filme)
                 <tr>
+                    <td scope='row'>
+                    <img src="{{$filme->imagem}}" width="80"height="80" alt="{{$filme->titulo}}">
+                    </td>
                     <td scope="row">{{$filme->titulo}}</td>
                     <td colspan="row">{{$filme->sinopse}}</td>
                     <td><a href="/filmes/alterar/{{$filme->id}}"><i class="fas fa-edit" placeholder='Alterar'></i></a></td>
