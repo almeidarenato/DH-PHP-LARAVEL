@@ -22,11 +22,25 @@ class FilmeController extends Controller
     {
         $request->validate([
             "titulo" => "required|max:50",
-            "sinopse" => "required|max:200"
+            "sinopse" => "required|max:200",
+            "genero" => "required",
+            "ator" => "required"
         ]);
+
+        $arquivo = $request->file('imagem');
+        $nomePasta = 'uploads';
+        $arquivo->storePublicly($nomePasta);
+        $caminhoAbsoluto = public_path() . "/storage/$nomePasta";
+        $nomeArquivo = $arquivo->getClientOriginalName();
+        $caminhoRelativo = "storage/$nomePasta/$nomeArquivo";
+        $arquivo->move($caminhoAbsoluto, $nomeArquivo);
+
         $filme = Filme::create([
             "titulo" => $request->input('titulo'),
-            "sinopse" => $request->input('sinopse')
+            "sinopse" => $request->input('sinopse'),
+            "imagem" => $caminhoRelativo,
+            "id_protagonista" => $request->input('ator'),
+            "id_genero" => $request->input('genero')
         ]);
 
         $filme->save();
