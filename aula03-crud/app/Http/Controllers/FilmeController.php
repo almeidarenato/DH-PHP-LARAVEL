@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Filme;
+use App\Genero;
+use App\Ator;
 
 class FilmeController extends Controller
 {
@@ -16,7 +18,11 @@ class FilmeController extends Controller
     }
     public function adicionandoFilmes()
     {
-        return view('adicionandoFilmes');
+        $atores = Ator::all();
+        $generos = Genero::all();
+        $data = ['atores' => $atores, 'generos' => $generos];
+
+        return view('adicionandoFilmes')->with($data);
     }
     public function salvandoFilmes(Request $request)
     {
@@ -45,7 +51,7 @@ class FilmeController extends Controller
 
         $filme->save();
 
-        return redirect('/filmes');
+        return redirect('/listandoFilmes');
     }
     public function alterandoFilme($id)
     {

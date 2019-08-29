@@ -21,5 +21,6 @@ class AtoresTableSeeder extends Seeder
         Ator::create([
             "nome" => "Deschamps"
         ]);
+        factory(Ator::class, 8)->create();
     }
 }
