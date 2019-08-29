@@ -22,18 +22,19 @@
             <div class="form-group col-md-6 col-sm-12">
                 <label for="exampleFormControlSelect1">Gênero</label>
                 <select class="form-control" name='genero' id='genero'>
-                  <option value=''></option>
-                  <option value='2'>2</option>
-                  <option value='3'>3</option>
-
+                  <option value=''>Selecione um Gênero</option>
+                  @foreach ($generos as $genero)
+                <option value='{{$genero->id}}'>{{$genero->descricao}}</option>
+                  @endforeach
                 </select>
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 <label for="exampleFormControlSelect1">Ator</label>
                 <select class="form-control" name='ator'id="ator">
-                  <option value=''></option>
-                  <option value='2'>2</option>
-                  <option value='3'>3</option>
+                  <option value=''>Selecione um Ator</option>
+                  @foreach ($atores as $ator)
+                <option value='{{$ator->id}}'>{{$ator->nome}}</option>
+                  @endforeach
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>

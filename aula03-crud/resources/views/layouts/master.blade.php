@@ -25,6 +25,14 @@
                 Blockbuster DH
             </a>
             <ul class="navbar-nav flex-row mr-auto">
+                @guest
+                <li class="nav-item">
+                        <a href="/" class="nav-link pr-2">Home</a>
+                    </li>
+                    <li class="nav-item">
+                            <a href="/login" class="nav-link pr-2">Login</a>
+                        </li>
+                @else
                 <li class="nav-item">
                     <a href="/filmes" class="nav-link pr-2">Filmes</a>
                 </li>
@@ -37,6 +45,7 @@
                 <li class="nav-item">
                     <a href="/generos/adicionar" class="nav-link pr-2">Cadastrar Gêneros</a>
                 </li>
+                @endguest
             </ul>
         </nav>
     </header>
