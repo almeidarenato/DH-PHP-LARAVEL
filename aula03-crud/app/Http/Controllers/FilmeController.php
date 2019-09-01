@@ -13,6 +13,7 @@ class FilmeController extends Controller
     {
         //$filmes = Filme::all();
         $filmes = Filme::orderBy('id', 'ASC')->paginate(5);
+
         //$filmes = Filme::paginate(5);
         return view('listandoFilmes')->with('filmes', $filmes);
     }
@@ -56,26 +57,43 @@ class FilmeController extends Controller
     public function alterandoFilme($id)
     {
         $filme = Filme::find($id);
-        return view('adicionandoFilmes')->with('filme', $filme);
+        $atores = Ator::orderBy('nome', 'ASC')->get();
+        $generos = Genero::orderBy('descricao', 'ASC')->get();
+        $data = ['filme' => $filme, 'atores' => $atores, 'generos' => $generos];
+        return view('adicionandoFilmes')->with($data);
     }
     public function modificandoFilme(Request $request, $id)
     {
         $filme = Filme::find($id);
         $request->validate([
             "titulo" => "required|max:50",
-            "sinopse" => "required|max:200"
+            "sinopse" => "required|max:200",
+            "genero" => "required",
+            "ator" => "required"
+
         ]);
+        // salva imagem
+        $arquivo = $request->file('imagem');
+        $nomePasta = 'uploads';
+        $arquivo->storePublicly($nomePasta);
+        $caminhoAbsoluto = public_path() . "/storage/$nomePasta";
+        $nomeArquivo = $arquivo->getClientOriginalName();
+        $caminhoRelativo = "storage/$nomePasta/$nomeArquivo";
+        $arquivo->move($caminhoAbsoluto, $nomeArquivo);
 
         $filme->titulo = $request->input('titulo');
         $filme->sinopse = $request->input('sinopse');
+        $filme->id_genero = $request->input('genero');
+        $filme->id_protagonista = $request->input('ator');
+        $filme->imagem = $caminhoRelativo;
         $filme->save();
 
-        return redirect('/filmes');
+        return redirect('/listandoFilmes');
     }
     public function removendoFilme($id)
     {
         $filme = Filme::find($id);
         $filme->delete();
-        return redirect('/filmes');
+        return redirect('/listandoFilmes');
     }
 }
