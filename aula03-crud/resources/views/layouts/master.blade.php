@@ -30,23 +30,49 @@
                         <a href="/" class="nav-link pr-2">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a href="/catalogo" class='nav-link pr-2'>Catalogo de Filmes</a>
+                    </li>
+                    <li class="nav-item">
                             <a href="/login" class="nav-link pr-2">Login</a>
-                        </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/register" class='nav-link pr-2'>Cadastro</a>
+                    </li>
+                </ul>
                 @else
-                <li class="nav-item">
-                    <a href="/filmes" class="nav-link pr-2">Filmes</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/filmes/adicionar" class="nav-link pr-2">Cadastrar Filmes</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/generos" class="nav-link pr-2">Gêneros</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/generos/adicionar" class="nav-link pr-2">Cadastrar Gêneros</a>
-                </li>
+                <ul class="navbar-nav flex-row mr-auto">
+                    <li class="nav-item">
+                        <a href="/filmes" class="nav-link pr-2">Filmes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/filmes/adicionar" class="nav-link pr-2">Cadastrar Filmes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/generos" class="nav-link pr-2">Gêneros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/generos/adicionar" class="nav-link pr-2">Cadastrar Gêneros</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav flex-row ml-auto">
+                    <li class="nav-item">
+                        <a href="" class="nav-link pr4">
+                            Olá {{Auth::user()->name}}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('logout')}}" class="nav-link"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            {{ __('Sair') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                        </form>
+                    </li>
+                </ul>
                 @endguest
-            </ul>
+
         </nav>
     </header>
     <main class="container my-5">

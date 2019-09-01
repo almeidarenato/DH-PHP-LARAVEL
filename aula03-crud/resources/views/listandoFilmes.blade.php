@@ -24,6 +24,8 @@
                     <th scope="col">Capa</th>
                     <th scope="col">Título</th>
                     <th colspan="col" scope="col">Sinopse</th>
+                    <th scope="col">Protagonista</th>
+                    <th scope="col">Gênero</th>
                     <th colspan="2">Ações </th>
                 </tr>
             </thead>
@@ -35,10 +37,12 @@
                     </td>
                     <td scope="row">{{$filme->titulo}}</td>
                     <td colspan="row">{{$filme->sinopse}}</td>
+                    <td colspan="row">{{$filme->ator->nome}}</td>
+                    <td colspan="row">{{$filme->genero->descricao}}</td>
                     <td><a href="/filmes/alterar/{{$filme->id}}"><i class="fas fa-edit" placeholder='Alterar'></i></a></td>
                     <td>
                             <a href='#' data-toggle="modal" data-target="#modal{{$filme->id}}">
-                                    <i class="fas fa-trash" placeholder='Remover'></i>
+                            <i class="fas fa-trash" placeholder='Remover'></i>
                             </a>
                     </td>
                 </tr>
